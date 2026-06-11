@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,43 @@ import { Download, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdInsertChartOutlined } from "react-icons/md";
 
+// Simple seeded PRNG to produce deterministic heatmap values across renders
+function seededRandom(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 16807 + 0) % 2147483647;
+    return s / 2147483647;
+  };
+}
+
+const WEEKS = 52;
+const DAYS = 7;
+
+const HEATMAP_COLORS = [
+  "bg-[#1E1C1A]", // Level 0 (Empty)
+  "bg-[#32451C]", // Level 1
+  "bg-[#4B6A2A]", // Level 2
+  "bg-[#6A963B]", // Level 3
+  "bg-[#81B64C]", // Level 4
+];
+
+function getHeatmapColor(intensity: number): string {
+  if (intensity > 0.8) return HEATMAP_COLORS[4];
+  if (intensity > 0.6) return HEATMAP_COLORS[3];
+  if (intensity > 0.4) return HEATMAP_COLORS[2];
+  if (intensity > 0.2) return HEATMAP_COLORS[1];
+  return HEATMAP_COLORS[0];
+}
+
 export default function ContactAndHeatmap() {
-  // Mock data for heatmap to simulate GitHub contributions
-  const WEEKS = 52;
-  const DAYS = 7;
-  
+  // Memoize the heatmap grid so random values don't change on re-render
+  const heatmapGrid = useMemo(() => {
+    const rand = seededRandom(42);
+    return Array.from({ length: DAYS }, () =>
+      Array.from({ length: WEEKS }, () => getHeatmapColor(rand()))
+    );
+  }, []);
+
   return (
     <section id="contact" className="py-20 pb-40">
       <div className="mb-12">
@@ -38,26 +71,15 @@ export default function ContactAndHeatmap() {
             <CardContent>
               <div className="overflow-x-auto pb-4">
                 <div className="inline-flex flex-col gap-1 min-w-max">
-                  {/* Generate 7 rows of 52 squares */}
-                  {Array.from({ length: DAYS }).map((_, day) => (
-                    <div key={day} className="flex gap-1 group">
-                      {Array.from({ length: WEEKS }).map((_, week) => {
-                        // Randomize activity level for aesthetic
-                        const intensity = Math.random();
-                        let colorClass = "bg-[#1E1C1A]"; // Level 0 (Empty)
-                        if (intensity > 0.8) colorClass = "bg-[#81B64C]"; // Level 4
-                        else if (intensity > 0.6) colorClass = "bg-[#6A963B]"; // Level 3
-                        else if (intensity > 0.4) colorClass = "bg-[#4B6A2A]"; // Level 2
-                        else if (intensity > 0.2) colorClass = "bg-[#32451C]"; // Level 1
-                        
-                        return (
-                          <div
-                            key={week}
-                            className={`w-3 h-3 md:w-4 md:h-4 rounded-[2px] ${colorClass} hover:ring-2 hover:ring-white transition-all`}
-                            title="Contribution"
-                          />
-                        );
-                      })}
+                  {heatmapGrid.map((row, day) => (
+                    <div key={day} className="flex gap-1">
+                      {row.map((colorClass, week) => (
+                        <div
+                          key={week}
+                          className={`w-3 h-3 md:w-4 md:h-4 rounded-[2px] ${colorClass} hover:ring-2 hover:ring-white/70 transition-shadow`}
+                          title="Contribution"
+                        />
+                      ))}
                     </div>
                   ))}
                 </div>
@@ -67,11 +89,9 @@ export default function ContactAndHeatmap() {
                 <div className="flex items-center gap-2">
                   <span>Less</span>
                   <div className="flex gap-1">
-                    <div className="w-3 h-3 rounded-[2px] bg-[#1E1C1A]" />
-                    <div className="w-3 h-3 rounded-[2px] bg-[#32451C]" />
-                    <div className="w-3 h-3 rounded-[2px] bg-[#4B6A2A]" />
-                    <div className="w-3 h-3 rounded-[2px] bg-[#6A963B]" />
-                    <div className="w-3 h-3 rounded-[2px] bg-[#81B64C]" />
+                    {HEATMAP_COLORS.map((color, i) => (
+                      <div key={i} className={`w-3 h-3 rounded-[2px] ${color}`} />
+                    ))}
                   </div>
                   <span>More</span>
                 </div>

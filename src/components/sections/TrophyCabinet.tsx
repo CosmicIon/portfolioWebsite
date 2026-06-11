@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Medal, Star, Trophy } from "lucide-react";
+import { Award, Cloud, Medal, Star, Trophy } from "lucide-react";
 
 interface TrophyItem {
   title: string;
@@ -32,9 +32,6 @@ const TROPHIES: TrophyItem[] = [
     icon: Star,
   },
 ];
-
-// Reusable Trophy Graphic component since we can't import Cloud dynamically without error if it's not imported above
-import { Cloud } from "lucide-react";
 
 export default function TrophyCabinet() {
   return (

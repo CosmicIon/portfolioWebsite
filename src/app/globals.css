@@ -20,8 +20,56 @@
   --font-heading: var(--font-geist), sans-serif;
 }
 
+/* ---- Base ---- */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* Offset anchor targets beneath the sticky navbar */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* ---- Selection color ---- */
+::selection {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+/* ---- Scrollbar styling (Webkit) ---- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--background);
+}
+
+/* ---- Smoother animations via GPU compositing hints ---- */
+.motion-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
