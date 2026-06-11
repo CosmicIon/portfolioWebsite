@@ -1,0 +1,193 @@
+.contact {
+  padding: var(--section-padding) 0;
+  padding-bottom: 120px;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contactInfo h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.contactDescription {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.contactHighlight {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.contactCards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+}
+
+.contactCard:hover {
+  border-color: var(--accent-green);
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+  color: inherit;
+}
+
+.contactCardIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.contactCard:hover .contactCardIcon {
+  background: var(--accent-green-glow);
+}
+
+.contactCardLabel {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contactCardValue {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Contact Form */
+.contactForm {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  border-top: 3px solid var(--accent-green);
+}
+
+.formTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-fast);
+}
+
+.formInput:focus {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 0 3px var(--accent-green-glow);
+}
+
+.formInput::placeholder {
+  color: var(--text-muted);
+}
+
+.formTextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formSubmit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.formSuccess {
+  padding: 16px;
+  background: rgba(129, 182, 76, 0.1);
+  border: 1px solid var(--accent-green);
+  border-radius: var(--radius-md);
+  color: var(--accent-green);
+  font-weight: 600;
+  text-align: center;
+  animation: fadeInUp 0.4s ease;
+}
+
+/* Decorative chessboard footer */
+.contactFooter {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.contactFooterText {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  margin-bottom: 16px;
+}
+
+.contactFooterChess {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 24px;
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contactForm {
+    padding: 24px;
+  }
+
+  .contact {
+    padding-bottom: 100px;
+  }
+}

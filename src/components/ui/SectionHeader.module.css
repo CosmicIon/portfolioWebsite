@@ -1,0 +1,37 @@
+.header {
+  margin-bottom: 48px;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.headerIcon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.headerTitle {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.headerSubtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  margin-top: 4px;
+  padding-left: 2px;
+}
+
+.headerUnderline {
+  width: 60px;
+  height: 3px;
+  background: var(--accent-green);
+  border-radius: var(--radius-full);
+  margin-top: 16px;
+}

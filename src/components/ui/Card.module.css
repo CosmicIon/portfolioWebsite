@@ -1,0 +1,28 @@
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-light);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.cardGlow:hover {
+  box-shadow: var(--shadow-glow), var(--shadow-card-hover);
+}
+
+.cardAccent {
+  border-top: 3px solid var(--accent-green);
+}
+
+.cardNoPadding {
+  padding: 0;
+}
