@@ -1,0 +1,108 @@
+.about {
+  padding: var(--section-padding) 0;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.aboutText h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.aboutParagraph {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.aboutHighlight {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.aboutCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aboutCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.aboutCardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.aboutCard:hover .aboutCardIcon {
+  background: var(--accent-green-glow);
+  border-color: var(--accent-green);
+}
+
+.aboutCardContent h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.aboutCardContent p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  margin-top: 24px;
+  opacity: 0.2;
+}
+
+.chessSquareLight {
+  background: #eeeed2;
+  aspect-ratio: 1;
+}
+
+.chessSquareDark {
+  background: #769656;
+  aspect-ratio: 1;
+}
+
+@media (max-width: 768px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .chessboard {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
